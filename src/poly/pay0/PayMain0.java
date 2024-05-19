@@ -12,7 +12,7 @@ public class PayMain0 {
 
         for (String str : map.keySet()) {
             PayService payService = new PayService(str, map.get(str));
-            payService.pay();
+            payService.processPay();
         }
 
     }

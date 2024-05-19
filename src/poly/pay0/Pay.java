@@ -1,5 +1,5 @@
 package poly.pay0;
 
-public interface Pay {
-    void processPay(String payOption, int amount);
+public interface  Pay {
+    boolean pay(int amount);
 }

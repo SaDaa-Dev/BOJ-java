@@ -1,31 +1,20 @@
 package poly.pay0;
 
 public class PayService {
-    Pay pay;
-    String payOption;
+    String option;
     int amount;
 
-    public PayService(String payOption, int amount) {
-        this.payOption = payOption;
+    public PayService(String option, int amount) {
+        this.option = option;
         this.amount = amount;
-
-        switch (payOption) {
-            case "kakao":
-                this.pay = new KakaoPay();
-                break;
-            case "naver":
-                this.pay = new NaverPay();
-                break;
-            case "bad":
-                this.pay = new BadPay();
-                break;
-            default:
-                this.pay = null;
-                break;
-        }
     }
 
-    public void pay() {
-        pay.processPay(payOption, amount);
+    public void processPay() {
+        boolean result = false;
+
+        System.out.println("결제를 시작합니다: option=" + option + " , amount=" + amount);
+
+        Pay pay = PayStore.findPay(option);
+        result = pay.pay(amount);
     }
 }
