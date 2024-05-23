@@ -8,6 +8,5 @@ public class ToStringMain2 {
         System.out.println("다형성 활용");
         ObjectPrinter.print(dog1);
         ObjectPrinter.print(dog2);
-
     }
 }
