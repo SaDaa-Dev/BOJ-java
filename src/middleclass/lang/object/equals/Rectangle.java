@@ -1,7 +1,5 @@
 package middleclass.lang.object.equals;
 
-import java.util.Objects;
-
 public class Rectangle {
     private int width;
     private int height;
