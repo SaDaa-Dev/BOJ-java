@@ -2,7 +2,7 @@ package programmers.hash;
 
 import java.util.HashSet;
 
-public class problem1 {
+public class Problem1 {
     public static void main(String[] args) {
 
     }

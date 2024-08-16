@@ -3,7 +3,7 @@ package programmers.hash;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class problem3 {
+public class Problem3 {
     public static void main(String[] args) {
         String[] data = {"119", "97674223", "1195524421"};
         String[] data1 = {"123","456","789"};

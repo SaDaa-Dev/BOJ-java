@@ -2,7 +2,7 @@ package programmers.hash;
 
 import java.util.HashMap;
 
-public class problem4 {
+public class Problem4 {
     public static void main(String[] args) {
         String[][] data = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
         int result = solution(data);

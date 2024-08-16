@@ -2,7 +2,7 @@ package programmers.stack;
 
 import java.util.Stack;
 
-public class problem1 {
+public class Problem1 {
     public static void main(String[] args) {
         int[] data = {4,4,4,3,3};
 

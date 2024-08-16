@@ -2,7 +2,7 @@ package programmers.hash;
 
 import java.util.*;
 
-public class problem5 {
+public class Problem5 {
     public static void main(String[] args) {
         String[] genres = {"classic", "pop", "classic", "classic", "pop"};
         int[] plays = {500, 600, 150, 800, 2500};

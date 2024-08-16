@@ -2,7 +2,7 @@ package programmers.hash;
 
 import java.util.HashMap;
 
-public class problem2 {
+public class Problem2 {
     public static void main(String[] args) {
         String[] part = {"leo", "kiki", "eden"};
         String[] comple = {"eden", "kiki"};
