@@ -1,9 +1,8 @@
-package programmers.heap;
+package programmers.sort;
 
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
-public class Problem4 {
+public class Problem1 {
     public static void main(String[] args) {
         int[] arr = new int[]{1, 5, 2, 6, 3, 7, 4};
         int[][] commands = new int[][]{
