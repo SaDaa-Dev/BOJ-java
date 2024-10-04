@@ -1,10 +1,10 @@
 package middleclass.nested;
 
 public class ShadowingMain {
-    private int value = 1;
+    public int value = 1;
    class Inner {
 
-       public int value = 2;
+        int value = 2;
         void go() {
             int value = 3;
             System.out.println("value = " + value);
@@ -14,9 +14,10 @@ public class ShadowingMain {
 
    }
     public static void main(String[] args) {
-        ShadowingMain shadowingMain = new ShadowingMain();
-        Inner inner = new Inner();
+        ShadowingMain main = new ShadowingMain();
+        Inner inner = main.new Inner();
         inner.go();
     }
 
 }
+
