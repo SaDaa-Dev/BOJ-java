@@ -21,8 +21,6 @@ public class BOJ11725 {
             adj.add(new ArrayList<>());
         }
 
-        boolean[] visited = new boolean[n + 1];
-
         // 간접리스트로 무방향 간선 트리
         for (int i = 0; i < n - 1; i++) {
             String[] edge = br.readLine().split(" ");
@@ -33,6 +31,27 @@ public class BOJ11725 {
             adj.get(b).add(a);
         }
 
+//        bfs(n, parent, adj, visited);
+        dfs(1, 0, parent, adj);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 2; i <= n; i++) {
+            sb.append(parent[i]).append("\n");
+        }
+        System.out.print(sb.toString());
+    }
+
+    private static void dfs(int current, int p, int[] parent, List<List<Integer>> adj) {
+        parent[current] = p; // 현재 노드의 부모 설정
+
+        for (Integer neighbor : adj.get(current)) {
+            if (neighbor != p) { // 부모 노드로 다시 가지 않도록 확인
+                dfs(neighbor, current, parent, adj);
+            }
+        }
+    }
+
+    private static void bfs(int n, int[] parent, List<List<Integer>> adj, boolean[] visited) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(1);
         visited[1] = true;
