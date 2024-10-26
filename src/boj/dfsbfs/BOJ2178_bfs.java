@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ2178 {
+public class BOJ2178_bfs {
     public class Solution {
         private int[][] maps;
         private boolean[][] visited;
@@ -65,7 +65,7 @@ public class BOJ2178 {
                 input[i] = Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();
             }
 
-            BOJ2178 tmp = new BOJ2178();
+            BOJ2178_bfs tmp = new BOJ2178_bfs();
             Solution solution = tmp.new Solution();
 
             System.out.println(solution.solution(input));
