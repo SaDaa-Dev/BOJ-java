@@ -3,8 +3,10 @@ package boj.dfsbfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class BOJ10026_dfs {
+public class BOJ10026_bfs {
 
     private static int n;
     private static boolean[][] visitedNormal;
@@ -24,53 +26,65 @@ public class BOJ10026_dfs {
         visitedNormal = new boolean[n][n];
         visitedBlind = new boolean[n][n];
 
-        int countNormal = 0;
-        int countColorBlind = 0;
+        int normalCnt = 0;
+        int blindCnt = 0;
 
-        for (int y = 0; y < n; y++) {
-            for (int x = 0; x < n; x++) {
-                if (!visitedNormal[y][x]) {
-                    // 정상
-                    dfs(x, y, visitedNormal, board[y][x], false);
-                    countNormal++;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visitedNormal[i][j]) {
+                    // 멀쩡
+                    bfs(board, visitedNormal, i, j, n, false);
+                    normalCnt++;
                 }
 
-                if (!visitedBlind[y][x]) {
+                if (!visitedBlind[i][j]) {
                     // 색약
-                    dfs(x, y, visitedBlind, board[y][x], true);
-                    countColorBlind++;
+                    bfs(board, visitedBlind, i, j, n, true);
+                    blindCnt++;
                 }
             }
         }
+
+        System.out.println(normalCnt + " " + blindCnt);
     }
 
-    private static void dfs(int x, int y, boolean[][] visited, char currentColor, boolean isColorBlind) {
-        visited[y][x] = true;
+    private static void bfs(char[][] board, boolean[][] visited, int x, int y, int n, boolean blindFlag) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{x, y});
+        visited[x][y] = true;
+        char currentColor = board[x][y];
 
-        for (int[] dir : DIRECTIONS) {
-            int newY = y + dir[0];
-            int newX = x + dir[1];
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int ox = current[0];
+            int oy = current[1];
 
-            if (newY >= 0 && newY < n && newX >= 0 && newX < n && !visited[newY][newX]) {
-                char nextColor = board[newY][newX];
-                if (isColorBlind) {
-                    if (isSameColorForColorBlind(currentColor, nextColor)) {
-                        dfs(newY, newX, visited, currentColor, true);
+            for (int[] dir : DIRECTIONS) {
+                int newX = ox + dir[0];
+                int newY = oy + dir[1];
+
+                if (newX >= 0 && newX < n && newY >= 0 && newY < n && !visited[newX][newY]) {
+                    char newColor = board[newX][newY];
+
+                    if (blindFlag) {
+                        if ((currentColor == 'R' || currentColor == 'G') &&
+                            (newColor == 'R' || newColor == 'G')) {
+                            queue.offer(new int[]{newX, newY});
+                            visited[newX][newY] = true;
+                        } else if (currentColor == 'B' && newColor == 'B') {
+                            queue.offer(new int[]{newX, newY});
+                            visited[newX][newY] = true;
+                        }
                     }
-                } else {
-                    if (currentColor == nextColor) {
-                        dfs(newY, newX, visited, currentColor, false);
+                    else {
+                        if (currentColor == newColor) {
+                            queue.add(new int[]{newX, newY});
+                            visited[newX][newY] = true;
+                        }
                     }
                 }
             }
+            
         }
-    }
-
-    private static boolean isSameColorForColorBlind(char a, char b) {
-        if (a == 'B' || b == 'B') {
-            return a == b;
-        }
-        // 'R'과 'G'는 색약인 경우 동일하게 취급
-        return (a == 'R' || a == 'G') && (b == 'R' || b == 'G');
     }
 }
