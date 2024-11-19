@@ -1,6 +1,7 @@
 package programmers.greedy;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Problem4 {
     private class Solution {
@@ -30,7 +31,7 @@ public class Problem4 {
             }
         }
         public int solution(int n, int[][] costs) {
-            Arrays.sort(costs, (o1, o2) -> o1[2] - o2[2]);
+            Arrays.sort(costs, Comparator.comparingInt(o -> o[2]));
 
             parent = new int[n + 1];
             rank = new int[n + 1];
