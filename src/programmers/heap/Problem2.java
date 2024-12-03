@@ -1,5 +1,6 @@
 package programmers.heap;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -20,12 +21,7 @@ public class Problem2 {
         int currentTime = 0;
         int completedJobs = 0;
 
-        PriorityQueue<int[]> waitQueue = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[0], o2[0]);
-            }
-        });
+        PriorityQueue<int[]> waitQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
 
         for (int[] job : jobs) {
             waitQueue.add(job);
