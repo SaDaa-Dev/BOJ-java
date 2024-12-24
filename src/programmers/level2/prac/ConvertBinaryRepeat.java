@@ -1,7 +1,4 @@
-package programmers.level2;
-
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
+package programmers.level2.prac;
 
 public class ConvertBinaryRepeat {
 
