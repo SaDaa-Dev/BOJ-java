@@ -1,8 +1,25 @@
 package programmers.retry;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Cache1st {
+
+    // LinkedHashMap
+    private class LRUCache extends LinkedHashMap<String, Boolean>{
+        private final int capacity;
+        public LRUCache(int capacity) {
+            super(capacity, 0.75f, true);
+            this.capacity = capacity;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<String, Boolean> eldest) {
+            return size() > capacity;
+        }
+
+    }
     public int solution(int cacheSize, String[] cities) {
         int totalTime = 0;
         LinkedList<String> cache = new LinkedList<>();
