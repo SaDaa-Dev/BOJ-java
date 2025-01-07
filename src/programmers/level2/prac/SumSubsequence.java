@@ -1,7 +1,6 @@
 package programmers.level2.prac;
 
-import java.nio.channels.SelectableChannel;
-import java.util.*;
+import java.util.HashSet;
 
 public class SumSubsequence {
     public int solution(int[] elements) {
