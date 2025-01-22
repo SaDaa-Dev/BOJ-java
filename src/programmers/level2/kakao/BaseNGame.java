@@ -1,5 +1,6 @@
 package programmers.level2.kakao;
 
+// N진수 게임
 public class BaseNGame {
     public String solution(int n, int t, int m, int p) {
         StringBuilder answer = new StringBuilder();
