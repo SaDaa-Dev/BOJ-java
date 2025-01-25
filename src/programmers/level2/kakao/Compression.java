@@ -3,6 +3,7 @@ package programmers.level2.kakao;
 import java.util.*;
 
 public class Compression {
+    /*
     public int[] solution(String msg) {
         ArrayList<Integer> result = new ArrayList<>();
         int dictionaryIdx = 26;
@@ -35,10 +36,8 @@ public class Compression {
                 dictionary.put(++dictionaryIdx, sb + stack.peek());
             }
         }
-
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
-
     private HashMap<Integer, String> firstDictionary() {
         HashMap<Integer, String> dictionary = new HashMap<>();
         for (int i = 65; i < 91; i++) {
@@ -46,7 +45,30 @@ public class Compression {
         }
         return dictionary;
     }
+*/
 
+    public int[] solution(String msg) {
+        HashMap<String, Integer> dictionary = new HashMap<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            dictionary.put(String.valueOf((char) ('A' + i)), i + 1);
+        }
+
+        int addIdx = 27;
+        String prefix = "";
+        for (int i = 0; i < msg.length(); i++) {
+            char c = msg.charAt(i);
+            if (dictionary.containsKey(prefix + c)) { // 계속 붙여감
+                prefix += c;
+            } else {
+                result.add(dictionary.get(prefix));
+                dictionary.put(prefix, addIdx++);
+                prefix = String.valueOf(c);
+            }
+        }
+
+        return result.stream().mapToInt(Integer::valueOf).toArray();
+    }
 
     public static void main(String[] args) {
         Compression problem = new Compression();
