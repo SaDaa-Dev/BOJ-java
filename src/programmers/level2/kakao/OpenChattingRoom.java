@@ -2,8 +2,6 @@ package programmers.level2.kakao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OpenChattingRoom {
 
@@ -55,10 +53,7 @@ public class OpenChattingRoom {
             }
         }
 
-        System.out.println("resultList = " + resultList);
-
-
-        return resultList.toArray(String[]::new);
+        return resultList.toArray(new String[resultList.size()]);
     }
     public static void main(String[] args) {
         OpenChattingRoom problem = new OpenChattingRoom();
