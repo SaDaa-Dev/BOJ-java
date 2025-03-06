@@ -1,15 +1,14 @@
 package programmers.retry;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class Cache1st {
 
-    // LinkedHashMap
-    private class LRUCache extends LinkedHashMap<String, Boolean>{
+    private class LRUHashMap extends LinkedHashMap<String, Boolean> {
         private final int capacity;
-        public LRUCache(int capacity) {
+
+        public LRUHashMap(int capacity) {
             super(capacity, 0.75f, true);
             this.capacity = capacity;
         }
@@ -18,11 +17,11 @@ public class Cache1st {
         protected boolean removeEldestEntry(Map.Entry<String, Boolean> eldest) {
             return size() > capacity;
         }
-
     }
+
     public int solution(int cacheSize, String[] cities) {
         int totalTime = 0;
-        LinkedList<String> cache = new LinkedList<>();
+        LRUHashMap lruHashMap = new LRUHashMap(cacheSize);
 
         if (cacheSize == 0) {
             return cities.length * 5;
@@ -30,15 +29,11 @@ public class Cache1st {
 
         for (String city : cities) {
             String c = city.toUpperCase();
-            if (cache.contains(c)) {
-                cache.remove(c);
-                cache.add(c);
+            if (lruHashMap.containsKey(c)) {
+                lruHashMap.get(c);
                 totalTime += 1;
             } else {
-                if (cache.size() == cacheSize) {
-                    cache.remove(0);
-                }
-                cache.add(c);
+                lruHashMap.put(c, true);
                 totalTime += 5;
             }
         }
