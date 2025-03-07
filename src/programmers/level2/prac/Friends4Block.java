@@ -1,27 +1,19 @@
 package programmers.level2.prac;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Friends4Block {
 
     public int solution(int m, int n, String[] board) {
-        int answer = 0;
         String[][] tBoard = new String[m][n];
+
         for (int i = 0; i < board.length; i++) {
             String[] split = board[i].split("");
-            for (int j = 0; j < split.length; j++) {
-                tBoard[i][j] = split[j];
-            }
-        }
-
-        for (String[] strings : tBoard) {
-            System.out.println(Arrays.toString(strings));
+            System.arraycopy(split, 0, tBoard[i], 0, split.length);
         }
 
         while (true) {
-            // 제거 블록 후보
             List<int[]> breakable = getBreakable(m, n, tBoard);
             if (breakable.isEmpty()) {
                 break;
@@ -36,38 +28,39 @@ public class Friends4Block {
                 tBoard[x][y - 1] = "";
             }
 
-            for (String[] strings : tBoard) {
-                System.out.println(Arrays.toString(strings));
-            }
-            for (int j = 0; j < n; j++) {
-                for (int i = m - 1; i >= 0; i--) {
-                    if (tBoard[i][j].equals("")) {
-                        for (int k = i - 1; k >= 0; k--) {
-                            if (!tBoard[k][j].equals("")) {
-                                tBoard[i][j] = tBoard[k][j];
-                                tBoard[k][j] = "";
-                                break;
-                            }
-                        }
+            dropBlocks(m, n, tBoard);
+        }
+
+        return countRemovedBlocks(m, n, tBoard);
+    }
+
+    private void dropBlocks(int m, int n, String[][] board) {
+        for (int col = 0; col < n; col++) {
+            for (int row = m - 1; row > 0; row--) {
+                if (board[row][col].equals("")) {
+                    int upper = row - 1;
+                    while (upper >= 0 && board[upper][col].equals("")) {
+                        upper--;
+                    }
+                    if (upper >= 0) {
+                        board[row][col] = board[upper][col];
+                        board[upper][col] = "";
                     }
                 }
             }
-
-            System.out.println("=========Cycle========");
-            for (String[] strings : tBoard) {
-                System.out.println(Arrays.toString(strings));
-            }
         }
+    }
 
+    private int countRemovedBlocks(int m, int n, String[][] board) {
+        int count = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (tBoard[i][j].equals("")) {
-                    answer++;
+                if (board[i][j].equals("")) {
+                    count++;
                 }
             }
         }
-
-        return answer;
+        return count;
     }
 
     private static List<int[]> getBreakable(int m, int n, String[][] tBoard) {
