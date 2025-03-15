@@ -10,7 +10,7 @@ public class RotateProcession {
     public int[] solution(int rows, int columns, int[][] queries) {
         int[] answer = new int[queries.length];
         int[][] board = makeBoard(rows, columns);
-        for (int i = 0; i < queries.length; i++) {
+        for (int i = 0; i < queries.length;    i++) {
             int x1 = queries[i][0] - 1; // 0-Index 기반 변경
             int y1 = queries[i][1] - 1;
             int x2 = queries[i][2] - 1;
