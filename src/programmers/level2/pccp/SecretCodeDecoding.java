@@ -8,12 +8,13 @@ public class SecretCodeDecoding {
     private int m, n, answer;
     private int[] ans, pool;
     private int[][] q;
-    private boolean[] present = new boolean[31];
+    private boolean[] present;
     public int solution(int n, int[][] q, int[] ans) {
         this.n = n;
         this.m = ans.length;
         this.ans = ans;
         this.q = q;
+        this.present = new boolean[n + 1];
         this.pool = makePool(ans, q);
 
         dfs(0, 0, new int[5]);
