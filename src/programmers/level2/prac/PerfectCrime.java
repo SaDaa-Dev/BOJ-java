@@ -11,7 +11,7 @@ public class PerfectCrime {
             int addA = box[0], addB = box[1];
 
             boolean[][] next = new boolean[n][m];     // 다음 단계 테이블
--
+
             for (int a = 0; a < n; a++) {
                 for (int b = 0; b < m; b++) {
                     if (!cur[a][b]) continue;
